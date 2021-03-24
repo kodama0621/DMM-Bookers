@@ -15,7 +15,13 @@
         <span><%= book.body %></span>
       <% end %>
       </th>
-      <th colspan="3"></th>
+
+      <th colspan="3">
+        <% @book.each do |book| %>
+        <%= link_to "Show", book_path(@book.id) %>
+        <%= link_to "Edit", edit_book_path(@book.id) %>
+        <% end %>
+      </th>
     </tr>
   </thead>
 </table>
