@@ -1,13 +1,8 @@
-<% if @book.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
-    <ul>
-      <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+<% if flash[:notice] %>
+  <div class="notice">
+      <%= flash[:notice] %>
   </div>
 <% end %>
-
 <h1>Books</h1>
 
 <table>
@@ -35,6 +30,16 @@
 </table>
 
 <h3>New book</h3>
+<% if @book.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+  <h><%= @book.errors.count %> errors prohibited this book from being saved:</h4>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <%= form_with model:@book, local:true do |f| %>
 
   <h4>Title</h4>
